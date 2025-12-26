@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="application-name" content="Radio Gospel Music - Tocando o melhor da música gospel">
+<meta name="msapplication-TileColor" content="#0669DE">
+<meta property="twitter:card" content="summary">
+<meta property="twitter:site" content="@radiogospelmusic">
+<meta property="twitter:title" content="Radio Gospel Music - Tocando o melhor da música gospel">
+<meta property="twitter:description" content="Sintonize agora e desfrute do melhor da música gospel 24 horas por dia!">
+<meta property="twitter:image" content="https://developerbr-mg.github.io/EBD/gospel-music-img.png">
+<meta property="twitter:url" content="https://developerbr-mg.github.io/EBD/musica.html">
+<meta property="og:title" content="Radio Gospel Music - Tocando o melhor da música gospel">
+<meta property="og:description" content="Sintonize agora e desfrute do melhor da música gospel 24 horas por dia!">
+<meta property="og:url" content="https://developerbr-mg.github.io/EBD/musica.html">
+<meta property="busca:publisher" content="Radio Gospel Music">
+<meta property="og:image" content="https://developerbr-mg.github.io/EBD/gospel-music-img.png">
+<meta property="busca:image" content="https://developerbr-mg.github.io/EBD/gospel-music-img.png">
+<meta name="msapplication-TileImage" content="https://developerbr-mg.github.io/EBD/gospel-music-img.png">
+<title>Radio Gospel Music</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+
+.player {
+    width: 320px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.player h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+/* Equalizador */
+.equalizer {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    height: 50px;
+    margin: 15px 0;
+}
+
+.bar {
+    width: 8px;
+    height: 35px;              /* 🔥 altura base maior */
+    background: linear-gradient(180deg, #00f260, #0575e6);
+    border-radius: 6px;
+    animation: bounce 1s infinite ease-in-out;
+    animation-play-state: paused;
+    transform-origin: bottom;
+}
+
+
+
+.bar:nth-child(1) { animation-delay: 0s; }
+.bar:nth-child(2) { animation-delay: .1s; }
+.bar:nth-child(3) { animation-delay: .2s; }
+.bar:nth-child(4) { animation-delay: .3s; }
+.bar:nth-child(5) { animation-delay: .4s; }
+
+@keyframes bounce {
+    0% {
+        transform: scaleY(0.4);
+    }
+    50% {
+        transform: scaleY(1.4); /* 🔊 sobe bem mais */
+    }
+    100% {
+        transform: scaleY(0.4);
+    }
+}
+
+
+
+/* Botão */
+button {
+    background: #00f260;
+    background: linear-gradient(45deg, #00f260, #0575e6);
+    border: none;
+    color: #fff;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform .2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+</style>
+</head>
+
+<body>
+  <img src="img.png" alt="Logo" style=" top: 20px; left: 20px; width: 200px; border-radius: 5%;">
+
+<div class="player">
+    <h1>🎶 Radio Gospel Music</h1>
+
+    <div class="equalizer" id="equalizer">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <button onclick="togglePlay()">▶ Ouvir Rádio</button>
+
+    <audio id="radio">
+        <source src="https://uk25freenew.listen2myradio.com/live.mp3?typeportmount=s1_3428_stream_144211309" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+const radio = document.getElementById("radio");
+const bars = document.querySelectorAll(".bar");
+const button = document.querySelector("button");
+
+function togglePlay() {
+    if (radio.paused) {
+        radio.play();
+        button.textContent = "⏸ Pausar";
+        bars.forEach(bar => bar.style.animationPlayState = "running");
+    } else {
+        radio.pause();
+        button.textContent = "▶ Ouvir Rádio";
+        bars.forEach(bar => bar.style.animationPlayState = "paused");
+    }
+}
+</script>
+
+</body>
+</html>
