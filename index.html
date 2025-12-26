@@ -9,15 +9,15 @@
 <meta property="twitter:site" content="@radiogospelmusic">
 <meta property="twitter:title" content="Radio Gospel Music - Tocando o melhor da música gospel">
 <meta property="twitter:description" content="Sintonize agora e desfrute do melhor da música gospel 24 horas por dia!">
-<meta property="twitter:image" content="https://developerbr-mg.github.io/EBD/gospel-music-img.png">
-<meta property="twitter:url" content="https://developerbr-mg.github.io/EBD/musica.html">
+<meta property="twitter:image" content="https://developerbr-mg.github.io/Radio-Gospel-Music/gospel-music-img.png">
+<meta property="twitter:url" content="https://developerbr-mg.github.io/Radio-Gospel-Music/musica.html">
 <meta property="og:title" content="Radio Gospel Music - Tocando o melhor da música gospel">
 <meta property="og:description" content="Sintonize agora e desfrute do melhor da música gospel 24 horas por dia!">
-<meta property="og:url" content="https://developerbr-mg.github.io/EBD/musica.html">
+<meta property="og:url" content="https://developerbr-mg.github.io/Radio-Gospel-Music/musica.html">
 <meta property="busca:publisher" content="Radio Gospel Music">
-<meta property="og:image" content="https://developerbr-mg.github.io/EBD/gospel-music-img.png">
-<meta property="busca:image" content="https://developerbr-mg.github.io/EBD/gospel-music-img.png">
-<meta name="msapplication-TileImage" content="https://developerbr-mg.github.io/EBD/gospel-music-img.png">
+<meta property="og:image" content="https://developerbr-mg.github.io/Radio-Gospel-Music/gospel-music-img.png">
+<meta property="busca:image" content="https://developerbr-mg.github.io/Radio-Gospel-Music/gospel-music-img.png">
+<meta name="msapplication-TileImage" content="https://developerbr-mg.github.io/Radio-Gospel-Music/gospel-music-img.png">
 <title>Radio Gospel Music</title>
 
 <style>
@@ -85,6 +85,15 @@ body {
     }
 }
 
+#musica {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    padding: 10px 15px;
+    border-radius: 8px;
+    width: fit-content;
+}
 
 
 /* Botão */
@@ -103,6 +112,7 @@ button {
 button:hover {
     transform: scale(1.05);
 }
+
 </style>
 </head>
 
@@ -119,14 +129,30 @@ button:hover {
         <div class="bar"></div>
         <div class="bar"></div>
     </div>
+<div id="musica">🎵 Carregando música...</div>
 
+<script>
+function atualizarMusica() {
+    fetch("https://12.stmip.net:2036/currentsong?sid=1")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("musica").innerHTML = "🎶 Tocando agora: <b>" + data + "</b>";
+        })
+        .catch(() => {
+            document.getElementById("musica").innerText = "Erro ao carregar música";
+        });
+}
+
+atualizarMusica();
+setInterval(atualizarMusica, 15000); // atualiza a cada 15s
+</script>
     <button onclick="togglePlay()">▶ Ouvir Rádio</button>
 
     <audio id="radio">
         <source src="https://12.stmip.net:2036/stream" type="audio/mpeg">
     </audio>
 </div>
-
+<embed src="https://12.stmip.net:2036/currentsong?sid=1" width="auto" height="auto" ></embed>
 <script>
 const radio = document.getElementById("radio");
 const bars = document.querySelectorAll(".bar");
