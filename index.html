@@ -126,31 +126,7 @@ button:hover {
     <audio id="radio">
         <source src="https://12.stmip.net:2036/stream" type="audio/mpeg">
     </audio>
-     <h1>🎵 Rádio Online</h1>
-    <p>Música tocando agora:</p>
-    <h2 id="musica">Carregando...</h2>
-
-    <script>
-        const url = "https://12.stmip.net:2036/stats?sid=1&json=1";
-
-        function carregarMusica() {
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("musica").innerText =
-                        data.songtitle || "Sem música";
-                })
-                .catch(error => {
-                    document.getElementById("musica").innerText =
-                        "Erro ao carregar música";
-                    console.error(error);
-                });
-        }
-
-        carregarMusica();
-        setInterval(carregarMusica, 10000); // atualiza a cada 10s
-    </script>
-
+     <include src="musica.php"></include>
 </div>
 
 
