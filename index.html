@@ -125,19 +125,24 @@ button:hover {
     <audio id="radio">
         <source src="https://12.stmip.net:2036/stream" type="audio/mpeg">
     </audio>
-<div id="musica">Carregando música...</div>
+    <div id="musica">Carregando música...</div>
 
 <script>
-fetch("https://12.stmip.net:2036/currentsong?sid=1")
-  .then(res => res.text())
-  .then(text => {
-    document.getElementById("musica").innerText = text;
-  })
-  .catch(() => {
-    document.getElementById("musica").innerText = "Rádio Online";
-  });
+function atualizar() {
+  fetch("musica.php")
+    .then(r => r.text())
+    .then(t => document.getElementById("musica").innerText = t)
+    .catch(() => {
+      document.getElementById("musica").innerText = "Rádio Gospel Music";
+    });
+}
+
+atualizar();
+setInterval(atualizar, 5000);
 </script>
+    <iframe id="songFrame"src="https://12.stmip.net:2036/currentsong?sid=1" style="border:none;width:500px; height:30px; overflow:hidden;" scrolling="no" frameborder="0"></iframe>
 </div>
+
 
 <script>
 const radio = document.getElementById("radio");
