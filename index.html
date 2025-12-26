@@ -23,23 +23,28 @@
 
 <style>
 body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #fff;
+    background-color: #0f2027;
+   
 }
+
+    
 
 .player {
     width: 320px;
-    background: rgba(0,0,0,0.5);
+    background: rgba(9, 5, 44, 0.5);
     border-radius: 20px;
     padding: 20px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin: 0;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fdfbfb;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .player h1 {
@@ -104,14 +109,20 @@ button {
 button:hover {
     transform: scale(1.05);
 }
+.topo{float: left;width: auto; height: auto; left: 50%;position: absolute;top:20%; ;transform: translate(-50%, -50%); font-family: Arial, Helvetica, sans-serif;color: #fdfbfb;}
+.topo p{ color: #fff;float: left;}
 </style>
 </head>
 
 <body>
-    <iframe src="https://12.stmip.net:2036/currentsong?sid=1" width="100%" height="30px"></iframe>
-  <img src="img.png" alt="Logo" style=" top: 20px; left: 20px; width: 200px; border-radius: 5%;">
+    <div class="topo">
+        <p>Tocando Agora</p>
+<iframe src="https://12.stmip.net:2036/currentsong?sid=1"width="100%"height="30"frameborder="0"scrolling="no"style="border:0; overflow:hidden;"></iframe> 
+
+ </div>
 
 <div class="player">
+     <img src="img.png" alt="Logo" style=" top: 20px; left: 20px; width: 200px; border-radius: 5%;">
     <h1>🎶 Radio Gospel Music</h1>
 
     <div class="equalizer" id="equalizer">
@@ -148,6 +159,6 @@ function togglePlay() {
     }
 }
 </script>
-
+</div>
 </body>
 </html>
