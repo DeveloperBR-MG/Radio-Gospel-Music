@@ -18,6 +18,7 @@
 <meta property="og:image" content="https://developerbr-mg.github.io/EBD/gospel-music-img.png">
 <meta property="busca:image" content="https://developerbr-mg.github.io/EBD/gospel-music-img.png">
 <meta name="msapplication-TileImage" content="https://developerbr-mg.github.io/EBD/gospel-music-img.png">
+
 <title>Radio Gospel Music</title>
 
 <style>
@@ -125,22 +126,27 @@ button:hover {
     <audio id="radio">
         <source src="https://12.stmip.net:2036/stream" type="audio/mpeg">
     </audio>
-    <div id="musica">Carregando música...</div>
+   
+
+
+
+<div id="musica">Carregando...</div>
 
 <script>
-function atualizar() {
-  fetch("musica.php")
-    .then(r => r.text())
-    .then(t => document.getElementById("musica").innerText = t)
-    .catch(() => {
-      document.getElementById("musica").innerText = "Rádio Gospel Music";
-    });
-}
-
-atualizar();
-setInterval(atualizar, 5000);
+fetch("https://12.stmip.net:2036/stats?sid=1&json=1")
+.then(res => res.json())
+.then(data => {
+    document.getElementById("musica").innerText = data.songtitle ?? "Sem música";
+})
+.catch(() => {
+    document.getElementById("musica").innerText = "Erro ao carregar música";
+});
 </script>
-    <iframe id="songFrame"src="https://12.stmip.net:2036/currentsong?sid=1" style="border:none;width:500px; height:30px; overflow:hidden;" scrolling="no" frameborder="0"></iframe>
+
+
+
+
+
 </div>
 
 
